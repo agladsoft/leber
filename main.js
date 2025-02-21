@@ -17,10 +17,18 @@ camera.attachControl(canvas, true);
 const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
 
 // --- Плоскость (земля) ---
-const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
-const groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
-groundMaterial.diffuseTexture = new BABYLON.Texture("textures/grass.jpg", scene);
-ground.material = groundMaterial;
+BABYLON.SceneLoader.ImportMesh("", "models/", "playground.glb", scene, function (newMeshes) {
+    if (!newMeshes || newMeshes.length === 0) return;
+
+    const playground = newMeshes[0].parent || newMeshes[0];
+
+    // Устанавливаем нулевую позицию, если нужно подогнать
+    playground.position = new BABYLON.Vector3(0, 0, 0);
+    playground.rotationQuaternion = null; // Убираем поворот, если он был в glTF
+
+    // Масштабирование (если слишком большая/маленькая)
+    playground.scaling = new BABYLON.Vector3(1, 1, 1);
+});
 
 // --- Цены элементов ---
 const elementPrices = {
