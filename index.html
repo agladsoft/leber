@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Площадка</title>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+        canvas { width: 100%; height: 100%; display: block; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h3>Выберите элемент</h3>
+        <div class="item" draggable="true" data-model="playground2.glb">
+            <img src="textures/playground2.png" alt="Домик Тоскана">
+            <p>Площадка</p>
+        </div>
+        <div class="item" draggable="true" data-model="msk_201.glb">
+            <img src="textures/msk_201.png" alt="Качалка-балансир">
+            <p>Качалка-балансир</p>
+        </div>
+        <div class="item" draggable="true" data-model="msk_105.glb">
+            <img src="textures/msk_105.png" alt="Качеля-дуга">
+            <p>Качеля-дуга</p>
+        </div>
+        <div class="item" draggable="true" data-model="lgk_314.glb">
+            <img src="textures/lgk_314.png" alt="Карусель-миссури">
+            <p>Карусель-миссури</p>
+        </div>
+        <div class="item" draggable="true" data-model="lgk_11.glb">
+            <img src="textures/lgk_11.png" alt="Карусель-гнездо">
+            <p>Карусель-гнездо</p>
+        </div>
+        <div class="item" draggable="true" data-model="lgp_112.glb">
+            <img src="textures/lgp_112.png" alt="Песочница">
+            <p>Песочница</p>
+        </div>
+        <div class="item" draggable="true" data-model="lgd_3.glb">
+            <img src="textures/lgd_3.png" alt="Домик Тоскана">
+            <p>Домик Тоскана</p>
+        </div>
+    </div>
+
+    <canvas id="renderCanvas"></canvas>
+
+    <div id="pricePanel">
+        <h3>Общая стоимость: <span id="totalPrice">0</span> ₽</h3>
+        <table id="elementsTable">
+            <thead>
+                <tr>
+                    <th>Элемент</th>
+                    <th>Цена (₽)</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="clearButton">Очистить</button>
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
