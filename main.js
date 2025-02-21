@@ -3,10 +3,10 @@ const engine = new BABYLON.Engine(canvas, true);
 const scene = new BABYLON.Scene(engine);
 
 // --- Фон ---
-var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
-var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+var skybox = BABYLON.MeshBuilder.CreateBox("cityBox", {size:1000.0}, scene);
+var skyboxMaterial = new BABYLON.StandardMaterial("cityBox", scene);
 skyboxMaterial.backFaceCulling = false;
-skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
+skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/citybox/citybox", scene);
 skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
 skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
