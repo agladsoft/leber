@@ -2,6 +2,20 @@ const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 const scene = new BABYLON.Scene(engine);
 
+// --- Skybox (Небо) ---
+// Создаём большой куб для неба
+const skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 1000 }, scene);
+const skyboxMaterial = new BABYLON.StandardMaterial("skyBoxMaterial", scene);
+skyboxMaterial.backFaceCulling = false; // Показываем внутреннюю сторону куба
+// Загружаем кубическую текстуру для неба. Файлы должны быть расположены в папке textures/skybox
+skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
+skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+skybox.material = skyboxMaterial;
+skybox.infiniteDistance = true;
+
+
 // --- Камера "вид сверху" ---
 const camera = new BABYLON.ArcRotateCamera(
     "camera",
@@ -12,6 +26,7 @@ const camera = new BABYLON.ArcRotateCamera(
     scene
 );
 camera.attachControl(canvas, true);
+camera.upperBetaLimit = Math.PI / 2.2;
 
 // --- Свет ---
 const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
@@ -52,7 +67,7 @@ let totalPrice = 0;
 const modelSizes = {
     "lgk_314.glb": 2,
     "msk_201.glb": 3,
-    "msk_105.glb": 1.5,
+    "msk_105.glb": 3,
     "lgk_11.glb": 1.2,
     "lgp_112.glb": 2.5,
     "lgd_3.glb": 3,
