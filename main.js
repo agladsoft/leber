@@ -2,19 +2,15 @@ const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 const scene = new BABYLON.Scene(engine);
 
-// --- Skybox (Небо) ---
-// Создаём большой куб для неба
-const skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 1000 }, scene);
-const skyboxMaterial = new BABYLON.StandardMaterial("skyBoxMaterial", scene);
-skyboxMaterial.backFaceCulling = false; // Показываем внутреннюю сторону куба
-// Загружаем кубическую текстуру для неба. Файлы должны быть расположены в папке textures/skybox
+// --- Фон ---
+var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
+var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+skyboxMaterial.backFaceCulling = false;
 skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
 skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
 skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
 skybox.material = skyboxMaterial;
-skybox.infiniteDistance = true;
-
 
 // --- Камера "вид сверху" ---
 const camera = new BABYLON.ArcRotateCamera(
